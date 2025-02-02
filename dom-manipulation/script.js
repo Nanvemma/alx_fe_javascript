@@ -66,6 +66,41 @@ function filterQuotes() {
   }
 }
 
+// Function to export the quotes array to a JSON file
+function exportToJsonFile() {
+  const json = JSON.stringify(quotes, null, 2); // Convert quotes array to JSON string with indentation
+  const blob = new Blob([json], { type: 'application/json' });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "quotes.json"; // Name of the file to download
+  link.click(); // Trigger download
+}
+
+// Function to import quotes from a JSON file
+function importFromJsonFile(event) {
+  const file = event.target.files[0];
+  if (!file) {
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const importedQuotes = JSON.parse(e.target.result); // Parse the JSON content
+      if (Array.isArray(importedQuotes)) {
+        quotes = importedQuotes; // Replace the quotes array with the imported one
+        populateCategories(); // Re-populate the categories dropdown
+        showRandomQuote(); // Display a random quote
+      } else {
+        alert("Invalid file format. Please upload a valid JSON file.");
+      }
+    } catch (err) {
+      alert("Error reading the file. Please ensure it's a valid JSON.");
+    }
+  };
+  reader.readAsText(file);
+}
+
 // Event listener for the "Show New Quote" button
 document.getElementById("changeColorButton").addEventListener("click", showRandomQuote);
 

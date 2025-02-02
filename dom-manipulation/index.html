@@ -23,6 +23,12 @@
 
   <button id="changeColorButton">Show New Quote</button>
 
+  <!-- Export Quotes Button -->
+  <button id="exportButton" onclick="exportToJsonFile()">Export Quotes</button>
+
+  <!-- Import Quotes Button -->
+  <input type="file" id="importFile" onchange="importFromJsonFile(event)" />
+  
   <script src="script.js"></script>
 </body>
 </html>
