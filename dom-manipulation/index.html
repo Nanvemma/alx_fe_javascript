@@ -3,12 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DOM Manipulation</title>
+  <title>Dynamic Quote Generator</title>
 </head>
 <body>
-  <h1>Welcome to DOM Manipulation</h1>
+  <h1>Dynamic Quote Generator</h1>
 
   <div>
+    <label for="categoryFilter">Filter by Category: </label>
+    <select id="categoryFilter" onchange="filterQuotes()">
+      <option value="all">All Categories</option>
+      <!-- Dynamically populated categories -->
+    </select>
+  </div>
+
+  <div id="quoteContainer">
     <p id="quoteText">Your quote will appear here.</p>
     <p id="quoteCategory">Category: </p>
   </div>
