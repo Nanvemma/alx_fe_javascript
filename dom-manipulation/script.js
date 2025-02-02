@@ -1,4 +1,4 @@
-// Array to hold the quotes
+// Array to hold the quotes (no change here, keeping the previous quotes array intact)
 let quotes = [
   { text: "The only limit to our realization of tomorrow is our doubts of today.", category: "inspiration" },
   { text: "The purpose of life is not to be happy. It is to be useful, to be honorable, to be compassionate, to have it make some difference that you have lived and lived well.", category: "life" },
@@ -6,21 +6,21 @@ let quotes = [
   { text: "Success is not final, failure is not fatal: It is the courage to continue that counts.", category: "inspiration" }
 ];
 
-// Function to show a random quote
+// Function to show a random quote (no changes)
 function showRandomQuote() {
   const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
   document.getElementById("quoteText").innerHTML = randomQuote.text;
   document.getElementById("quoteCategory").innerHTML = `Category: ${randomQuote.category}`;
 }
 
-// Function to add a new quote to the quotes array
+// Function to add a new quote to the quotes array (no changes)
 function addQuote(text, category) {
   quotes.push({ text: text, category: category });
   populateCategories(); // Re-populate categories in the dropdown
   showRandomQuote();
 }
 
-// Function to populate categories in the dropdown
+// Function to populate categories in the dropdown (no changes)
 function populateCategories() {
   const categoryFilter = document.getElementById("categoryFilter");
   const categories = new Set(quotes.map(quote => quote.category));
@@ -44,7 +44,7 @@ function populateCategories() {
   }
 }
 
-// Function to filter quotes based on selected category
+// Function to filter quotes based on selected category (no changes)
 function filterQuotes() {
   const selectedCategory = document.getElementById("categoryFilter").value;
 
@@ -66,7 +66,13 @@ function filterQuotes() {
   }
 }
 
-// Function to export the quotes array to a JSON file
+// Event listener for the "Show New Quote" button (no changes)
+document.getElementById("changeColorButton").addEventListener("click", showRandomQuote);
+
+// Initialize categories on page load (no changes)
+populateCategories();
+
+// New functionality: Export Quotes Button
 function exportToJsonFile() {
   const json = JSON.stringify(quotes, null, 2); // Convert quotes array to JSON string with indentation
   const blob = new Blob([json], { type: 'application/json' });
@@ -76,7 +82,7 @@ function exportToJsonFile() {
   link.click(); // Trigger download
 }
 
-// Function to import quotes from a JSON file
+// New functionality: Import Quotes from File
 function importFromJsonFile(event) {
   const file = event.target.files[0];
   if (!file) {
@@ -100,9 +106,3 @@ function importFromJsonFile(event) {
   };
   reader.readAsText(file);
 }
-
-// Event listener for the "Show New Quote" button
-document.getElementById("changeColorButton").addEventListener("click", showRandomQuote);
-
-// Initialize categories on page load
-populateCategories();
