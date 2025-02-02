@@ -5,14 +5,14 @@ let quotes = [
   { text: "In the end, we will remember not the words of our enemies, but the silence of our friends.", category: "friendship" }
 ];
 
-// Function to display a random quote
-function displayRandomQuote() {
+// Function to show a random quote
+function showRandomQuote() {
   // Select a random quote from the array
   const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
 
-  // Update the DOM with the random quote's text and category
-  document.getElementById("quoteText").textContent = randomQuote.text;
-  document.getElementById("quoteCategory").textContent = `Category: ${randomQuote.category}`;
+  // Update the DOM with the random quote's text and category using innerHTML
+  document.getElementById("quoteText").innerHTML = randomQuote.text;
+  document.getElementById("quoteCategory").innerHTML = `Category: ${randomQuote.category}`;
 }
 
 // Function to add a new quote to the quotes array
@@ -21,11 +21,11 @@ function addQuote(text, category) {
   quotes.push({ text: text, category: category });
 
   // Optionally, update the DOM to show the new quote
-  displayRandomQuote();
+  showRandomQuote();
 }
 
 // Event listener for the "Show New Quote" button
-document.getElementById("changeColorButton").addEventListener("click", displayRandomQuote);
+document.getElementById("changeColorButton").addEventListener("click", showRandomQuote);
 
 // Example: Add a new quote (can be triggered by another action)
 addQuote("Life is what happens when you're busy making other plans.", "life");
