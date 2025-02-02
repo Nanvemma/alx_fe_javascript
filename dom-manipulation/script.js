@@ -24,8 +24,57 @@ function addQuote(text, category) {
   showRandomQuote();
 }
 
+// Function to create the "Add Quote" form
+function createAddQuoteForm() {
+  // Create form elements
+  const form = document.createElement("form");
+
+  const textLabel = document.createElement("label");
+  textLabel.setAttribute("for", "quoteTextInput");
+  textLabel.innerHTML = "Quote: ";
+  form.appendChild(textLabel);
+
+  const textInput = document.createElement("input");
+  textInput.setAttribute("type", "text");
+  textInput.setAttribute("id", "quoteTextInput");
+  form.appendChild(textInput);
+
+  const categoryLabel = document.createElement("label");
+  categoryLabel.setAttribute("for", "quoteCategoryInput");
+  categoryLabel.innerHTML = "Category: ";
+  form.appendChild(categoryLabel);
+
+  const categoryInput = document.createElement("input");
+  categoryInput.setAttribute("type", "text");
+  categoryInput.setAttribute("id", "quoteCategoryInput");
+  form.appendChild(categoryInput);
+
+  const submitButton = document.createElement("button");
+  submitButton.type = "submit";
+  submitButton.innerHTML = "Add Quote";
+  form.appendChild(submitButton);
+
+  // Add form to the DOM
+  document.body.appendChild(form);
+
+  // Event listener for form submission
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const newText = textInput.value;
+    const newCategory = categoryInput.value;
+    if (newText && newCategory) {
+      addQuote(newText, newCategory);
+      textInput.value = ''; // Clear the input fields
+      categoryInput.value = '';
+    }
+  });
+}
+
 // Event listener for the "Show New Quote" button
 document.getElementById("changeColorButton").addEventListener("click", showRandomQuote);
+
+// Call the function to create the "Add Quote" form when the page loads
+createAddQuoteForm();
 
 // Example: Add a new quote (can be triggered by another action)
 addQuote("Life is what happens when you're busy making other plans.", "life");
