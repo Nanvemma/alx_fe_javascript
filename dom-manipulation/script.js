@@ -70,8 +70,12 @@ function createAddQuoteForm() {
   });
 }
 
-// Event listener for the "Show New Quote" button
-document.getElementById("changeColorButton").addEventListener("click", showRandomQuote);
+// Event listener for the "Show New Quote" button (now referencing newQuote)
+function newQuote() {
+  showRandomQuote();
+}
+
+document.getElementById("changeColorButton").addEventListener("click", newQuote);
 
 // Call the function to create the "Add Quote" form when the page loads
 createAddQuoteForm();
